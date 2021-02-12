@@ -27,15 +27,14 @@ function onDeviceReady() {
 
     console.log('Running cordova-xxx' + cordova.platformId + '@' + cordova.version);
     document.getElementById('deviceready').classList.add('ready');
-    document.getElementById('bb').onclick = uploadFiles; 
-    console.log('Running cordova-xxx' , uploadFiles);
+    document.getElementById('butonUpload').onclick = uploadFiles; 
+    document.getElementById('butonJson').onclick = postJson; 
 
 }
-
 async function callWebApiViaXHR(options) {
     if (!options) { options = {}; }
 
-    let apiUrl = 'http://192.168.0.112:5995/test/upload';
+    let apiUrl = options.url;
     if(window.WebviewProxy && window.WebviewProxy.convertProxyUrl){
         apiUrl = `${window.WebviewProxy.convertProxyUrl(apiUrl)}`;
     }
@@ -57,7 +56,11 @@ async function callWebApiViaXHR(options) {
         }
     };
     xhr.open('post', apiUrl, true);
-    xhr.setRequestHeader("Content-Type","multipart/form-data");
+    if(options.header){
+        Object.keys(options.header).forEach(key => {
+            xhr.setRequestHeader(key,options.header[key]);
+        });
+    }
     xhr.send(options.data);
 
     // return Axios({
@@ -84,7 +87,7 @@ async function callWebApiViaXHR(options) {
 async function uploadFiles(){
     try {
         let data = new FormData(),
-            xxFile = document.getElementById('xx');
+            xxFile = document.getElementById('fileInput');
 
         for (let index = 0; index < xxFile.files.length; index++) {
             const file = xxFile.files[index];
@@ -92,28 +95,25 @@ async function uploadFiles(){
         }
         await callWebApiViaXHR(
             {
+                url: 'http://192.168.0.112:5995/test/upload',
                 method: 'POST',
                 data,
-                // onUploadProgress: e => {
-                //     // logger.log('Upload', e.loaded);
-                //     if (e.total) {
-                //         console.log('Progress',e.loaded);                        
-                //     } else {
-                //         console.log('Progress done');
-                //     }
-                // },
-                // cancelToken: new Axios.CancelToken(cancel => {
-                //     console.log('Cancel');
-                // }),
             });
-        
-            // if (response.success) {
-            //     return response.data;
-            // } else {
-            //     console.warn('[FileService::uploadFiles] Response failed', response);
-            //     return [];
-            // }
     } catch (e) {       
         console.error('[FileService::uploadFiles] Error', e);
+    }
+}
+
+async function postJson(){
+    try {
+        await callWebApiViaXHR(
+            {
+                url: 'http://192.168.0.112:5995/test/json',
+                method: 'POST',
+                data: JSON.stringify({ "email": "hello@user.com", "response": { "name": "Tester" } }),
+                header: {"Content-Type": "application/json;"}
+            });
+    } catch (e) {       
+        console.error('[FileService::postJson] Error', e);
     }
 }
