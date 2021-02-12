@@ -1,0 +1,57 @@
+{
+  "_from": "git+https://github.com/GEDYSIntraWare/cordova-plugin-webview-proxy.git",
+  "_id": "cordova-plugin-webview-proxy@0.0.3",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/cordova-plugin-webview-proxy",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/GEDYSIntraWare/cordova-plugin-webview-proxy",
+    "rawSpec": "https://github.com/GEDYSIntraWare/cordova-plugin-webview-proxy",
+    "saveSpec": "git+https://github.com/GEDYSIntraWare/cordova-plugin-webview-proxy.git",
+    "fetchSpec": "https://github.com/GEDYSIntraWare/cordova-plugin-webview-proxy.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "git+https://github.com/GEDYSIntraWare/cordova-plugin-webview-proxy.git#b24e2a0833490d743eb92b71b4a1b745d284f057",
+  "_spec": "https://github.com/GEDYSIntraWare/cordova-plugin-webview-proxy",
+  "_where": "/Users/developerdnw/work/test/cordova/hello",
+  "author": {
+    "name": "GEDYS IntraWare GmbH"
+  },
+  "bugs": {
+    "url": "https://github.com/GEDYSIntraWare/cordova-plugin-webview-proxy/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-webview-proxy",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Proxy HTTP(S) requests through native code to make CORS and Cookies work in cordova-ios",
+  "homepage": "https://github.com/GEDYSIntraWare/cordova-plugin-webview-proxy",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova",
+    "webview",
+    "wkwebview",
+    "ios"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-webview-proxy",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GEDYSIntraWare/cordova-plugin-webview-proxy.git"
+  },
+  "scripts": {
+    "test": "paramedic.."
+  },
+  "version": "0.0.3"
+}
